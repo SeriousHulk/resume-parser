@@ -599,7 +599,7 @@ git commit -m "feat: add resume schemas"
 **Files:**
 - Create: `app/errors.py`
 
-- [ ] **Step 1: Create app-specific exceptions**
+- [x] **Step 1: Create app-specific exceptions**
 
 Create `app/errors.py`:
 
@@ -632,7 +632,7 @@ class ResumeExtractionError(ResumeParserError):
     """Raised when the model response cannot be converted to ResumeData."""
 ```
 
-- [ ] **Step 2: Run existing tests**
+- [x] **Step 2: Run existing tests**
 
 Run:
 
@@ -642,7 +642,7 @@ uv run pytest tests/test_schemas.py tests/test_model_registry.py -v
 
 Expected: PASS.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 Run:
 
