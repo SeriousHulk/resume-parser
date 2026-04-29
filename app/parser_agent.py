@@ -3,6 +3,7 @@ import os
 from pydantic_ai import Agent
 from pydantic_ai.models.google import GoogleModel
 from pydantic_ai.models.ollama import OllamaModel
+from pydantic_ai.providers.ollama import OllamaProvider
 
 from app.config import Settings
 from app.errors import ModelConfigurationError, ResumeExtractionError
@@ -41,13 +42,19 @@ def build_agent(provider: str, model: str, settings: Settings) -> Agent:
         )
 
     if provider == "local_ollama":
-        model_instance = OllamaModel(model)
+        model_instance = OllamaModel(
+            model,
+            provider=OllamaProvider(base_url=settings.local_ollama_base_url),
+        )
     elif provider == "cloud_ollama":
         # Pydantic AI's Ollama provider uses the OpenAI-compatible API.
-        os.environ.setdefault("OLLAMA_BASE_URL", settings.cloud_ollama_base_url)
-        if settings.cloud_ollama_api_key:
-            os.environ.setdefault("OLLAMA_API_KEY", settings.cloud_ollama_api_key)
-        model_instance = OllamaModel(model)
+        model_instance = OllamaModel(
+            model,
+            provider=OllamaProvider(
+                base_url=settings.cloud_ollama_base_url,
+                api_key=settings.cloud_ollama_api_key or None,
+            ),
+        )
     elif provider == "gemini":
         api_key = settings.gemini_api_key or settings.google_api_key
         if not api_key:
