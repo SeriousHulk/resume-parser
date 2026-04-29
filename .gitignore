@@ -1,6 +1,7 @@
 # Codex / local agent state
 .codex/
 .superpowers/
+.worktrees/
 
 # Python bytecode and caches
 __pycache__/
