@@ -817,7 +817,7 @@ git commit -m "feat: add markitdown document conversion"
 - Create: `app/ocr.py`
 - Create: `tests/test_ocr.py`
 
-- [ ] **Step 1: Write OCR tests**
+- [x] **Step 1: Write OCR tests**
 
 Create `tests/test_ocr.py`:
 
@@ -878,7 +878,7 @@ def test_tesseract_config_error_when_required_but_unavailable(
         run_tesseract_ocr(tmp_path / "resume.pdf", Settings(tesseract_cmd=""))
 ```
 
-- [ ] **Step 2: Run OCR tests to verify failure**
+- [x] **Step 2: Run OCR tests to verify failure**
 
 Run:
 
@@ -888,7 +888,7 @@ uv run pytest tests/test_ocr.py -v
 
 Expected: FAIL because `app.ocr` does not exist.
 
-- [ ] **Step 3: Implement OCR module**
+- [x] **Step 3: Implement OCR module**
 
 Create `app/ocr.py`:
 
@@ -954,7 +954,7 @@ def append_ocr_text(markdown: str, ocr_result: OcrResult) -> str:
     return f"{markdown.rstrip()}\n\n## OCR Extracted Text\n\n{ocr_result.text.strip()}"
 ```
 
-- [ ] **Step 4: Run OCR tests**
+- [x] **Step 4: Run OCR tests**
 
 Run:
 
@@ -964,7 +964,7 @@ uv run pytest tests/test_ocr.py -v
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 
