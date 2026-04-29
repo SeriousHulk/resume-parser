@@ -1774,7 +1774,7 @@ git commit -m "test: cover ocr parse integration"
 **Files:**
 - Modify only files required by failures found in this task.
 
-- [ ] **Step 1: Run formatter/linter**
+- [x] **Step 1: Run formatter/linter**
 
 Run:
 
@@ -1784,7 +1784,7 @@ uv run ruff check .
 
 Expected: PASS. If it fails, fix only the reported lint issues.
 
-- [ ] **Step 2: Run test suite**
+- [x] **Step 2: Run test suite**
 
 Run:
 
@@ -1794,7 +1794,7 @@ uv run pytest -v
 
 Expected: PASS.
 
-- [ ] **Step 3: Start the app locally**
+- [x] **Step 3: Start the app locally**
 
 Run:
 
@@ -1817,7 +1817,7 @@ Manual browser checks:
 - Gemini is disabled or hidden when no key is configured.
 - JSON output area updates after a mocked or real parse.
 
-- [ ] **Step 4: Final commit for fixes**
+- [x] **Step 4: Final commit for fixes**
 
 If Step 1 or Step 2 required fixes, run:
 

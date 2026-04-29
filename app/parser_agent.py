@@ -36,7 +36,9 @@ Resume Markdown:
 
 def build_agent(provider: str, model: str, settings: Settings) -> Agent:
     if not validate_provider_model(provider, model, settings):
-        raise ModelConfigurationError(f"Model '{model}' is not available for provider '{provider}'.")
+        raise ModelConfigurationError(
+            f"Model '{model}' is not available for provider '{provider}'."
+        )
 
     if provider == "local_ollama":
         model_instance = OllamaModel(model)

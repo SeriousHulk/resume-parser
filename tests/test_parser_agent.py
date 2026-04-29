@@ -22,7 +22,10 @@ async def test_parse_resume_markdown_returns_resume_data(monkeypatch: pytest.Mon
             assert "Jane Doe" in prompt
             return FakeResult()
 
-    monkeypatch.setattr("app.parser_agent.build_agent", lambda provider, model, settings: FakeAgent())
+    monkeypatch.setattr(
+        "app.parser_agent.build_agent",
+        lambda provider, model, settings: FakeAgent(),
+    )
 
     result = await parse_resume_markdown(
         markdown="# Jane Doe\nPython",

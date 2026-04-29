@@ -36,7 +36,9 @@ def test_validate_upload_metadata_rejects_large_file() -> None:
         validate_upload_metadata("resume.pdf", 2 * 1024 * 1024, settings)
 
 
-def test_convert_resume_file_returns_markdown(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+def test_convert_resume_file_returns_markdown(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
     path = tmp_path / "resume.pdf"
     path.write_bytes(b"fake")
 

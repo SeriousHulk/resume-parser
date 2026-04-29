@@ -19,7 +19,9 @@ def validate_upload_metadata(filename: str, size_bytes: int, settings: Settings)
     if suffix not in ALLOWED_EXTENSIONS:
         raise FileValidationError("Unsupported file type. Please upload a PDF, DOCX, or DOC file.")
     if size_bytes > settings.max_upload_bytes:
-        raise FileValidationError(f"File is too large. Maximum size is {settings.max_upload_mb} MB.")
+        raise FileValidationError(
+            f"File is too large. Maximum size is {settings.max_upload_mb} MB."
+        )
 
 
 def convert_resume_file(path: Path) -> ConvertedDocument:
@@ -30,6 +32,8 @@ def convert_resume_file(path: Path) -> ConvertedDocument:
 
     markdown = (result.text_content or "").strip()
     if not markdown:
-        raise DocumentConversionError("No readable Markdown was produced from the uploaded document.")
+        raise DocumentConversionError(
+            "No readable Markdown was produced from the uploaded document."
+        )
 
     return ConvertedDocument(markdown=markdown, markdown_char_count=len(markdown))

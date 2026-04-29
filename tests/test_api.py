@@ -42,7 +42,10 @@ def test_parse_returns_resume_data(
         assert model == "llama3.2"
         return ResumeData(skills=["Python"], raw_markdown_preview=markdown[:500])
 
-    monkeypatch.setattr("app.main.convert_resume_file", lambda path: type("Doc", (), {"markdown": "# Jane"})())
+    monkeypatch.setattr(
+        "app.main.convert_resume_file",
+        lambda path: type("Doc", (), {"markdown": "# Jane"})(),
+    )
     monkeypatch.setattr("app.main.should_run_ocr", lambda path, markdown, settings: False)
     monkeypatch.setattr("app.main.parse_resume_markdown", fake_parse_resume_markdown)
 
@@ -58,14 +61,19 @@ def test_parse_returns_resume_data(
     assert payload["data"]["skills"] == ["Python"]
 
 
-def test_parse_appends_ocr_when_triggered(monkeypatch: pytest.MonkeyPatch, client: TestClient) -> None:
+def test_parse_appends_ocr_when_triggered(
+    monkeypatch: pytest.MonkeyPatch, client: TestClient
+) -> None:
     seen = {}
 
     async def fake_parse_resume_markdown(markdown: str, provider: str, model: str, settings):
         seen["markdown"] = markdown
         return ResumeData(raw_markdown_preview=markdown[:500])
 
-    monkeypatch.setattr("app.main.convert_resume_file", lambda path: type("Doc", (), {"markdown": "# Jane"})())
+    monkeypatch.setattr(
+        "app.main.convert_resume_file",
+        lambda path: type("Doc", (), {"markdown": "# Jane"})(),
+    )
     monkeypatch.setattr("app.main.should_run_ocr", lambda path, markdown, settings: True)
     monkeypatch.setattr(
         "app.main.run_tesseract_ocr",
