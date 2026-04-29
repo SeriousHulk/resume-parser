@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume Parser</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace" aria-labelledby="page-title">
+        <div class="controls">
+          <h1 id="page-title">Resume Parser</h1>
+
+          <label id="drop-zone" class="drop-zone" for="file-input">
+            <span class="drop-title">Drop resume here</span>
+            <span id="file-name" class="drop-meta">PDF, DOCX, or DOC</span>
+            <input id="file-input" type="file" accept=".pdf,.docx,.doc" />
+          </label>
+
+          <label>
+            Provider
+            <select id="provider-select"></select>
+          </label>
+
+          <label>
+            Model
+            <select id="model-select"></select>
+          </label>
+
+          <button id="parse-button" type="button">Parse Resume</button>
+          <p id="status" role="status"></p>
+        </div>
+
+        <div class="output">
+          <div class="output-header">
+            <h2>Extracted JSON</h2>
+          </div>
+          <pre id="json-output">{}</pre>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

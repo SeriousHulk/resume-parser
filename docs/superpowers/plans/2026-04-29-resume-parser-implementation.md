@@ -1146,7 +1146,7 @@ git commit -m "feat: add pydantic ai parser agent"
 - Create: `app/main.py`
 - Create: `tests/test_api.py`
 
-- [ ] **Step 1: Write API tests**
+- [x] **Step 1: Write API tests**
 
 Create `tests/test_api.py`:
 
@@ -1211,7 +1211,7 @@ def test_parse_returns_resume_data(
     assert payload["data"]["skills"] == ["Python"]
 ```
 
-- [ ] **Step 2: Run API tests to verify failure**
+- [x] **Step 2: Run API tests to verify failure**
 
 Run:
 
@@ -1221,7 +1221,7 @@ uv run pytest tests/test_api.py -v
 
 Expected: FAIL because `app.main` does not exist.
 
-- [ ] **Step 3: Implement FastAPI app**
+- [x] **Step 3: Implement FastAPI app**
 
 Create `app/main.py`:
 
@@ -1292,7 +1292,7 @@ async def parse_resume(
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 ```
 
-- [ ] **Step 4: Run API tests**
+- [x] **Step 4: Run API tests**
 
 Run:
 
@@ -1302,7 +1302,7 @@ uv run pytest tests/test_api.py -v
 
 Expected: PASS after UI template/static files are created in the next task. If this fails because template/static directories are missing, continue to Task 9 before rerunning.
 
-- [ ] **Step 5: Commit after Task 9 completes**
+- [x] **Step 5: Commit after Task 9 completes**
 
 Do not commit `app/main.py` alone if tests fail due to missing UI files. Commit it with Task 9.
 
@@ -1314,7 +1314,7 @@ Do not commit `app/main.py` alone if tests fail due to missing UI files. Commit 
 - Create: `app/static/app.js`
 - Modify: `tests/test_api.py`
 
-- [ ] **Step 1: Create HTML template**
+- [x] **Step 1: Create HTML template**
 
 Create `app/templates/index.html`:
 
@@ -1367,7 +1367,7 @@ Create `app/templates/index.html`:
 </html>
 ```
 
-- [ ] **Step 2: Create CSS**
+- [x] **Step 2: Create CSS**
 
 Create `app/static/styles.css`:
 
@@ -1546,7 +1546,7 @@ button:disabled {
 }
 ```
 
-- [ ] **Step 3: Create browser JavaScript**
+- [x] **Step 3: Create browser JavaScript**
 
 Create `app/static/app.js`:
 
@@ -1695,7 +1695,7 @@ loadModels().catch((error) => {
 });
 ```
 
-- [ ] **Step 4: Run API tests**
+- [x] **Step 4: Run API tests**
 
 Run:
 
@@ -1705,7 +1705,7 @@ uv run pytest tests/test_api.py -v
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit FastAPI and UI**
+- [x] **Step 5: Commit FastAPI and UI**
 
 Run:
 
