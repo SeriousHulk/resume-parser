@@ -1,8 +1,19 @@
 import pytest
 
 from app.config import Settings
-from app.parser_agent import build_agent, build_resume_prompt, parse_resume_markdown
+from app.parser_agent import (
+    build_agent,
+    build_resume_prompt,
+    ollama_openai_base_url,
+    parse_resume_markdown,
+)
 from app.schemas import ResumeData
+
+
+def test_ollama_openai_base_url_adds_v1_endpoint() -> None:
+    assert ollama_openai_base_url("http://localhost:11434") == "http://localhost:11434/v1"
+    assert ollama_openai_base_url("http://localhost:11434/") == "http://localhost:11434/v1"
+    assert ollama_openai_base_url("http://localhost:11434/v1") == "http://localhost:11434/v1"
 
 
 def test_build_resume_prompt_contains_source_markdown() -> None:
@@ -46,7 +57,7 @@ def test_build_agent_passes_local_ollama_base_url(monkeypatch: pytest.MonkeyPatc
     assert result is seen["model_instance"]
     assert isinstance(seen["provider"], FakeProvider)
     assert seen["model_name"] == "qwen3.5:0.8b-q8_0"
-    assert seen["base_url"] == "http://localhost:11434"
+    assert seen["base_url"] == "http://localhost:11434/v1"
     assert seen["api_key"] is None
 
 
@@ -82,7 +93,7 @@ def test_build_agent_passes_cloud_ollama_provider(monkeypatch: pytest.MonkeyPatc
     )
 
     assert seen["model_name"] == "cloud-model"
-    assert seen["base_url"] == "https://ollama.example.com"
+    assert seen["base_url"] == "https://ollama.example.com/v1"
     assert seen["api_key"] == "secret"
 
 

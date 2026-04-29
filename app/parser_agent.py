@@ -11,6 +11,13 @@ from app.model_registry import validate_provider_model
 from app.schemas import ResumeData
 
 
+def ollama_openai_base_url(base_url: str) -> str:
+    normalized = base_url.rstrip("/")
+    if normalized.endswith("/v1"):
+        return normalized
+    return f"{normalized}/v1"
+
+
 def markdown_preview(markdown: str, limit: int = 500) -> str:
     return markdown.strip()[:limit]
 
@@ -44,14 +51,16 @@ def build_agent(provider: str, model: str, settings: Settings) -> Agent:
     if provider == "local_ollama":
         model_instance = OllamaModel(
             model,
-            provider=OllamaProvider(base_url=settings.local_ollama_base_url),
+            provider=OllamaProvider(
+                base_url=ollama_openai_base_url(settings.local_ollama_base_url)
+            ),
         )
     elif provider == "cloud_ollama":
         # Pydantic AI's Ollama provider uses the OpenAI-compatible API.
         model_instance = OllamaModel(
             model,
             provider=OllamaProvider(
-                base_url=settings.cloud_ollama_base_url,
+                base_url=ollama_openai_base_url(settings.cloud_ollama_base_url),
                 api_key=settings.cloud_ollama_api_key or None,
             ),
         )
