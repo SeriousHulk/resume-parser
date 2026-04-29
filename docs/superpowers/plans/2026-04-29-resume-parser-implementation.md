@@ -439,7 +439,7 @@ git commit -m "feat: add provider model registry"
 - Create: `app/schemas.py`
 - Create: `tests/test_schemas.py`
 
-- [ ] **Step 1: Write schema tests**
+- [x] **Step 1: Write schema tests**
 
 Create `tests/test_schemas.py`:
 
@@ -497,7 +497,7 @@ def test_resume_data_accepts_expected_fields() -> None:
     assert resume.work_experience[0].highlights == ["FastAPI", "Postgres"]
 ```
 
-- [ ] **Step 2: Run schema tests to verify failure**
+- [x] **Step 2: Run schema tests to verify failure**
 
 Run:
 
@@ -507,7 +507,7 @@ uv run pytest tests/test_schemas.py -v
 
 Expected: FAIL because `app.schemas` does not exist.
 
-- [ ] **Step 3: Implement schemas**
+- [x] **Step 3: Implement schemas**
 
 Create `app/schemas.py`:
 
@@ -575,7 +575,7 @@ class ParseResponse(BaseModel):
     data: ResumeData
 ```
 
-- [ ] **Step 4: Run schema tests**
+- [x] **Step 4: Run schema tests**
 
 Run:
 
@@ -585,7 +585,7 @@ uv run pytest tests/test_schemas.py -v
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 
