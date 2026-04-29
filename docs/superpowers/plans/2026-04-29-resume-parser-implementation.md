@@ -69,7 +69,7 @@ Do not create a database, auth layer, job queue, frontend framework, batch parse
 - Create: `app/__init__.py`
 - Create: `tests/conftest.py`
 
-- [ ] **Step 1: Create project metadata and dependencies**
+- [x] **Step 1: Create project metadata and dependencies**
 
 Create `pyproject.toml`:
 
@@ -113,7 +113,7 @@ target-version = "py312"
 select = ["E", "F", "I", "UP", "B"]
 ```
 
-- [ ] **Step 2: Create safe environment example**
+- [x] **Step 2: Create safe environment example**
 
 Create `.env.example`:
 
@@ -136,7 +136,7 @@ GOOGLE_API_KEY=
 GEMINI_MODELS=gemini-2.5-flash
 ```
 
-- [ ] **Step 3: Create README**
+- [x] **Step 3: Create README**
 
 Create `README.md`:
 
@@ -177,7 +177,7 @@ uv run pytest -v
 ```
 ```
 
-- [ ] **Step 4: Create package and test fixture scaffolding**
+- [x] **Step 4: Create package and test fixture scaffolding**
 
 Create `app/__init__.py`:
 
@@ -210,7 +210,7 @@ def client() -> Iterator[TestClient]:
         yield test_client
 ```
 
-- [ ] **Step 5: Run initial test command**
+- [x] **Step 5: Run initial test command**
 
 Run:
 
@@ -220,7 +220,7 @@ uv run pytest -v
 
 Expected: collection fails because `app.main` does not exist yet. This is acceptable for the skeleton checkpoint.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 Run:
 
