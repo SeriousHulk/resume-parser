@@ -236,7 +236,7 @@ git commit -m "chore: add project skeleton"
 - Create: `app/model_registry.py`
 - Create: `tests/test_model_registry.py`
 
-- [ ] **Step 1: Write model registry tests**
+- [x] **Step 1: Write model registry tests**
 
 Create `tests/test_model_registry.py`:
 
@@ -297,7 +297,7 @@ def test_validate_provider_model_accepts_available_model() -> None:
     assert validate_provider_model("local_ollama", "llama3.2", settings) is True
 ```
 
-- [ ] **Step 2: Run tests to verify failure**
+- [x] **Step 2: Run tests to verify failure**
 
 Run:
 
@@ -307,7 +307,7 @@ uv run pytest tests/test_model_registry.py -v
 
 Expected: FAIL because `app.config` and `app.model_registry` do not exist.
 
-- [ ] **Step 3: Implement settings**
+- [x] **Step 3: Implement settings**
 
 Create `app/config.py`:
 
@@ -357,7 +357,7 @@ def get_settings() -> Settings:
     return Settings()
 ```
 
-- [ ] **Step 4: Implement registry**
+- [x] **Step 4: Implement registry**
 
 Create `app/model_registry.py`:
 
@@ -414,7 +414,7 @@ def validate_provider_model(provider_id: str, model_name: str, settings: Setting
     return False
 ```
 
-- [ ] **Step 5: Run registry tests**
+- [x] **Step 5: Run registry tests**
 
 Run:
 
@@ -424,7 +424,7 @@ uv run pytest tests/test_model_registry.py -v
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 Run:
 
