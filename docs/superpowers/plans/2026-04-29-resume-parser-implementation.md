@@ -979,7 +979,7 @@ git commit -m "feat: add tesseract ocr hooks"
 - Create: `app/parser_agent.py`
 - Create: `tests/test_parser_agent.py`
 
-- [ ] **Step 1: Write parser tests with mocked agent**
+- [x] **Step 1: Write parser tests with mocked agent**
 
 Create `tests/test_parser_agent.py`:
 
@@ -1027,7 +1027,7 @@ def test_raw_markdown_preview_is_truncated() -> None:
     assert markdown_preview("a" * 600, limit=20) == "a" * 20
 ```
 
-- [ ] **Step 2: Run parser tests to verify failure**
+- [x] **Step 2: Run parser tests to verify failure**
 
 Run:
 
@@ -1037,7 +1037,7 @@ uv run pytest tests/test_parser_agent.py -v
 
 Expected: FAIL because `app.parser_agent` does not exist.
 
-- [ ] **Step 3: Implement parser agent**
+- [x] **Step 3: Implement parser agent**
 
 Create `app/parser_agent.py`:
 
@@ -1121,7 +1121,7 @@ async def parse_resume_markdown(
         raise ResumeExtractionError(f"Could not extract resume data: {exc}") from exc
 ```
 
-- [ ] **Step 4: Run parser tests**
+- [x] **Step 4: Run parser tests**
 
 Run:
 
@@ -1131,7 +1131,7 @@ uv run pytest tests/test_parser_agent.py -v
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 
