@@ -24,7 +24,7 @@ def test_models_endpoint_returns_providers(client: TestClient) -> None:
 def test_parse_rejects_unsupported_file(client: TestClient) -> None:
     response = client.post(
         "/api/parse",
-        data={"provider": "local_ollama", "model": "llama3.2"},
+        data={"provider": "local_ollama", "model": "qwen3.5:0.8b-q8_0"},
         files={"file": ("resume.txt", b"hello", "text/plain")},
     )
 
@@ -39,7 +39,7 @@ def test_parse_returns_resume_data(
 ) -> None:
     async def fake_parse_resume_markdown(markdown: str, provider: str, model: str, settings):
         assert provider == "local_ollama"
-        assert model == "llama3.2"
+        assert model == "qwen3.5:0.8b-q8_0"
         return ResumeData(skills=["Python"], raw_markdown_preview=markdown[:500])
 
     monkeypatch.setattr(
@@ -51,7 +51,7 @@ def test_parse_returns_resume_data(
 
     response = client.post(
         "/api/parse",
-        data={"provider": "local_ollama", "model": "llama3.2"},
+        data={"provider": "local_ollama", "model": "qwen3.5:0.8b-q8_0"},
         files={"file": ("resume.pdf", b"%PDF-1.4 fake", "application/pdf")},
     )
 
@@ -83,7 +83,7 @@ def test_parse_appends_ocr_when_triggered(
 
     response = client.post(
         "/api/parse",
-        data={"provider": "local_ollama", "model": "llama3.2"},
+        data={"provider": "local_ollama", "model": "qwen3.5:0.8b-q8_0"},
         files={"file": ("resume.pdf", b"%PDF-1.4 fake", "application/pdf")},
     )
 

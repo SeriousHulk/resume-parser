@@ -1,7 +1,8 @@
 from functools import lru_cache
+from typing import Annotated
 
-from pydantic import Field
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import Field, field_validator
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -19,15 +20,26 @@ class Settings(BaseSettings):
     ocr_min_markdown_chars: int = 200
 
     local_ollama_base_url: str = "http://localhost:11434"
-    local_ollama_models: list[str] = Field(default_factory=lambda: ["llama3.2", "qwen3"])
+    local_ollama_models: Annotated[list[str], NoDecode] = Field(
+        default_factory=lambda: ["qwen3.5:0.8b-q8_0"]
+    )
 
     cloud_ollama_base_url: str = ""
     cloud_ollama_api_key: str = ""
-    cloud_ollama_models: list[str] = Field(default_factory=list)
+    cloud_ollama_models: Annotated[list[str], NoDecode] = Field(default_factory=list)
 
     gemini_api_key: str = ""
     google_api_key: str = ""
-    gemini_models: list[str] = Field(default_factory=lambda: ["gemini-2.5-flash"])
+    gemini_models: Annotated[list[str], NoDecode] = Field(
+        default_factory=lambda: ["gemini-2.5-flash"]
+    )
+
+    @field_validator("local_ollama_models", "cloud_ollama_models", "gemini_models", mode="before")
+    @classmethod
+    def parse_model_list(cls, value: object) -> object:
+        if isinstance(value, str):
+            return [model.strip() for model in value.split(",") if model.strip()]
+        return value
 
     @property
     def max_upload_bytes(self) -> int:
