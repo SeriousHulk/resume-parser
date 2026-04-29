@@ -2,6 +2,8 @@
 
 A small FastAPI resume parser with a plain HTML UI, MarkItDown document conversion, targeted Tesseract OCR, and Pydantic AI structured extraction.
 
+![Resume Parser app screenshot](app/static/images/image.png)
+
 ## Features
 
 - Drag-and-drop resume upload with file picker fallback
