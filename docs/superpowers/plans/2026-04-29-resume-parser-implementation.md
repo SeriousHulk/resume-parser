@@ -657,7 +657,7 @@ git commit -m "chore: add app error types"
 - Create: `app/document_converter.py`
 - Create: `tests/test_document_converter.py`
 
-- [ ] **Step 1: Write converter tests**
+- [x] **Step 1: Write converter tests**
 
 Create `tests/test_document_converter.py`:
 
@@ -740,7 +740,7 @@ def test_convert_resume_file_rejects_empty_markdown(
         convert_resume_file(path)
 ```
 
-- [ ] **Step 2: Run converter tests to verify failure**
+- [x] **Step 2: Run converter tests to verify failure**
 
 Run:
 
@@ -750,7 +750,7 @@ uv run pytest tests/test_document_converter.py -v
 
 Expected: FAIL because `app.document_converter` does not exist.
 
-- [ ] **Step 3: Implement converter**
+- [x] **Step 3: Implement converter**
 
 Create `app/document_converter.py`:
 
@@ -792,7 +792,7 @@ def convert_resume_file(path: Path) -> ConvertedDocument:
     return ConvertedDocument(markdown=markdown, markdown_char_count=len(markdown))
 ```
 
-- [ ] **Step 4: Run converter tests**
+- [x] **Step 4: Run converter tests**
 
 Run:
 
@@ -802,7 +802,7 @@ uv run pytest tests/test_document_converter.py -v
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 Run:
 
