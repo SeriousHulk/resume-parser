@@ -1719,7 +1719,7 @@ git commit -m "feat: add fastapi upload ui"
 **Files:**
 - Modify: `tests/test_api.py`
 
-- [ ] **Step 1: Add API test proving OCR append flow**
+- [x] **Step 1: Add API test proving OCR append flow**
 
 Append this test to `tests/test_api.py`:
 
@@ -1750,7 +1750,7 @@ def test_parse_appends_ocr_when_triggered(monkeypatch: pytest.MonkeyPatch, clien
     assert "OCR phone" in seen["markdown"]
 ```
 
-- [ ] **Step 2: Run API tests**
+- [x] **Step 2: Run API tests**
 
 Run:
 
@@ -1760,7 +1760,7 @@ uv run pytest tests/test_api.py -v
 
 Expected: PASS.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 Run:
 

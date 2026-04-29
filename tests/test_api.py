@@ -56,3 +56,29 @@ def test_parse_returns_resume_data(
     payload = response.json()
     assert payload["provider"] == "local_ollama"
     assert payload["data"]["skills"] == ["Python"]
+
+
+def test_parse_appends_ocr_when_triggered(monkeypatch: pytest.MonkeyPatch, client: TestClient) -> None:
+    seen = {}
+
+    async def fake_parse_resume_markdown(markdown: str, provider: str, model: str, settings):
+        seen["markdown"] = markdown
+        return ResumeData(raw_markdown_preview=markdown[:500])
+
+    monkeypatch.setattr("app.main.convert_resume_file", lambda path: type("Doc", (), {"markdown": "# Jane"})())
+    monkeypatch.setattr("app.main.should_run_ocr", lambda path, markdown, settings: True)
+    monkeypatch.setattr(
+        "app.main.run_tesseract_ocr",
+        lambda path, settings: type("Ocr", (), {"text": "OCR phone", "attempted": True})(),
+    )
+    monkeypatch.setattr("app.main.parse_resume_markdown", fake_parse_resume_markdown)
+
+    response = client.post(
+        "/api/parse",
+        data={"provider": "local_ollama", "model": "llama3.2"},
+        files={"file": ("resume.pdf", b"%PDF-1.4 fake", "application/pdf")},
+    )
+
+    assert response.status_code == 200
+    assert "## OCR Extracted Text" in seen["markdown"]
+    assert "OCR phone" in seen["markdown"]
